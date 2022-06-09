@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>練習</title>
+  </head>
+  
+  <body>
+    <main>
+      <div class="container">
+        <div class="Todo-list" id="app">
+          <div class="todo-title">
+            <h1>
+              <button @click="allDelete">一括消去</button>
+              プログラミング
+              <span>({{ listfalse.length }}/{{ names.length }})</span>
+            </h1>
+            <div class="list-item">
+              <ul>
+                
+                <li v-for="(name,index) in names">
+                  <input type="checkbox" v-model="name.isDone">
+                  <span v-bind:class="{done: name.isDone}">{{ name.title }} </span>
+                  <button @click="deleteItem(index)">消去</button>
+                </li>
+                <li v-show="!names.length"> リストは作成されていません。</li>
+              </ul>
+              <form @submit.prevent="addItem">
+                <input type="text" v-model="newName">
+                <input type="submit" value="追加">
+              </form>
+            </div>
+          </div>
+        
+        </div>
+        <div class="like-btn" id="app2">
+          <h3>リストの使い心地はどうですか？(評価)</h3>
+          <p>いいね数:{{ total }}</p>
+          <like-component message="bad" ></like-component>
+          <like-component message="like" @increment="conect"  ></like-component>
+          <like-component  @increment="conect" ></like-component>
+
+        </div>
+
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
